@@ -1,9 +1,11 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import TimePicker from 'react-times'
 import timeHelper from './utils/time'
 import ICONS from './utils/icons'
+import {setEndMinute, setEndHour} from '../store/timeReducer'
 
-class SelectTime extends React.Component {
+class SelectStartTime extends React.Component {
   constructor(props) {
     super(props)
     const {defaultTime, meridiem, focused, showTimezone, timezone} = props
@@ -33,11 +35,13 @@ class SelectTime extends React.Component {
   onHourChange(hour) {
     console.log('hour', hour)
     this.setState({hour})
+    this.props.setEndHour(Number(hour))
   }
 
   onMinuteChange(minute) {
     console.log('minute', minute)
     this.setState({minute})
+    this.props.setEndMinute(Number(minute))
   }
 
   onTimeChange(time) {
@@ -96,9 +100,8 @@ class SelectTime extends React.Component {
 
   render() {
     const {hour, minute, focused, meridiem, timezone, showTimezone} = this.state
-
     return (
-      <div className="time_picker_wrapper">
+      <div>
         <TimePicker
           {...this.props}
           focused={focused}
@@ -118,4 +121,15 @@ class SelectTime extends React.Component {
   }
 }
 
-export default SelectTime
+const mapDispatch = dispatch => {
+  return {
+    setEndMinute: minute => {
+      dispatch(setEndMinute(minute))
+    },
+    setEndHour: hour => {
+      dispatch(setEndHour(hour))
+    }
+  }
+}
+
+export default connect(null, mapDispatch)(SelectStartTime)
