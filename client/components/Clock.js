@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import mergeClassNames from 'merge-class-names'
+import {DragDropContext} from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 
 import Hand from './Hand'
 import Mark from './Mark'
