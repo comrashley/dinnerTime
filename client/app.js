@@ -11,28 +11,25 @@ import 'react-times/css/material/default.css'
 // or you can use classic theme
 import 'react-times/css/classic/default.css'
 
-const date = new Date()
-
 const App = () => {
   return (
-    <div>
-      {/* <div>
-        Here is clock
-        <Clock value={date} />
-      </div> */}
+    <div className="p-3 px-2">
+      IT'S DINNER TIME! SELECT YOUR DESIRED COOK START AND END TIME
       <div>
         <GetRecipesButton />
       </div>
       <div>
         <RecipeList />
       </div>
-      <div>
-        Select Cook Start Time:
-        <SelectStartTime />
-      </div>
-      <div>
-        Select Cook End Time:
-        <SelectEndTime />
+      <div className="row">
+        <div className="col">
+          Select Cook Start Time:
+          <SelectStartTime />
+        </div>
+        <div className="col">
+          Select Cook End Time:
+          <SelectEndTime />
+        </div>
       </div>
     </div>
   )

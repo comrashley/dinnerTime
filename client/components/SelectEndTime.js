@@ -16,6 +16,7 @@ class SelectStartTime extends React.Component {
     } else {
       ;[hour, minute] = defaultTime.split(/:/)
     }
+    console.log('hour', hour)
 
     this.state = {
       hour,
@@ -25,6 +26,7 @@ class SelectStartTime extends React.Component {
       timezone,
       showTimezone
     }
+    console.log('state', this.state)
     this.onFocusChange = this.onFocusChange.bind(this)
     this.onHourChange = this.onHourChange.bind(this)
     this.onMeridiemChange = this.onMeridiemChange.bind(this)
@@ -32,41 +34,39 @@ class SelectStartTime extends React.Component {
     this.onTimeChange = this.onTimeChange.bind(this)
     this.handleFocusedChange = this.handleFocusedChange.bind(this)
   }
+
+  componentDidMount() {
+    this.props.setEndHour(Number(this.state.hour))
+    this.props.setEndMinute(Number(this.state.minute))
+  }
   onHourChange(hour) {
-    console.log('hour', hour)
     this.setState({hour})
     this.props.setEndHour(Number(hour))
   }
 
   onMinuteChange(minute) {
-    console.log('minute', minute)
     this.setState({minute})
     this.props.setEndMinute(Number(minute))
   }
 
   onTimeChange(time) {
-    console.log('time', time)
     const [hour, minute] = time.split(':')
     this.setState({hour, minute})
   }
 
   onMeridiemChange(meridiem) {
-    console.log('meridiem', meridiem)
     this.setState({meridiem})
   }
 
   onFocusChange(focused) {
-    console.log('focused', focused)
     this.setState({focused})
   }
 
   handleFocusedChange() {
-    console.log('handlefocuschange')
     const {focused} = this.state
     this.setState({focused: !focused})
   }
   get basicTrigger() {
-    console.log('basictrigger')
     const {hour, minute} = this.state
     return (
       <div onClick={this.handleFocusedChange} className="time_picker_trigger">
@@ -79,7 +79,6 @@ class SelectStartTime extends React.Component {
   }
 
   get customTrigger() {
-    console.log('customtrigger')
     return (
       <div onClick={this.handleFocusedChange} className="time_picker_trigger">
         {ICONS.time}
@@ -88,7 +87,6 @@ class SelectStartTime extends React.Component {
   }
 
   get trigger() {
-    console.log('trigger')
     const {customTriggerId} = this.props
     const triggers = {
       0: <div />,

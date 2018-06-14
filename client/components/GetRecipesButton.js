@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchRecipes} from '../store/recipesReducer'
+import convertTime from './utils/convertTime'
 
 class GetRecipesButton extends Component {
   constructor(props) {
@@ -11,7 +12,16 @@ class GetRecipesButton extends Component {
   handleSubmit() {
     //evt.preventDefault()
     console.log('here')
-    this.props.fetchRecipes('5400')
+    const times = this.props.times
+    console.log('times props', times)
+    const secs = convertTime(
+      times.startMinute,
+      times.startHour,
+      times.endMinute,
+      times.endHour
+    )
+    console.log(secs)
+    this.props.fetchRecipes(secs)
   }
   render() {
     return (
@@ -24,6 +34,12 @@ class GetRecipesButton extends Component {
   }
 }
 
+const mapState = state => {
+  return {
+    times: state.times
+  }
+}
+
 const mapDispatch = dispatch => {
   return {
     fetchRecipes: time => {
@@ -32,4 +48,4 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(null, mapDispatch)(GetRecipesButton)
+export default connect(mapState, mapDispatch)(GetRecipesButton)
