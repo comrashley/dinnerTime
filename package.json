@@ -39,9 +39,11 @@
     "body-parser": "^1.16.1",
     "compression": "^1.7.1",
     "connect-session-sequelize": "^4.1.0",
+    "css-loader": "^0.28.11",
     "express": "^4.14.1",
     "express-session": "^1.15.1",
     "history": "^4.6.3",
+    "merge-class-names": "^1.1.1",
     "morgan": "^1.8.1",
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",
@@ -55,8 +57,10 @@
     "redux": "^3.6.0",
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.2.0",
+    "request": "^2.87.0",
     "sequelize": "^4.3.1",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.3",
+    "style-loader": "^0.21.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.40",
