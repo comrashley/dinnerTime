@@ -6,6 +6,9 @@ import convertTime from './utils/convertTime'
 class GetRecipesButton extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      warningMessage: ''
+    }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -20,13 +23,31 @@ class GetRecipesButton extends Component {
       times.endMinute,
       times.endHour
     )
-    console.log(secs)
-    this.props.fetchRecipes(secs)
+    if (secs <= 0) {
+      this.setState({warningMessage: 'Start time must be before End time!'})
+    }
+    if (secs > 0) {
+      //show error message that end time cant be before start time
+      const ingredients = this.props.ingredients.join('+')
+      console.log('ingreds', ingredients)
+      this.props.fetchRecipes(secs, ingredients)
+    }
   }
   render() {
+    const secs = convertTime(
+      this.props.times.startMinute,
+      this.props.times.startHour,
+      this.props.times.endMinute,
+      this.props.times.endHour
+    )
     return (
       <div>
-        <button type="button" onClick={this.handleSubmit}>
+        {secs <= 0 && <div>{this.state.warningMessage}</div>}
+        <button
+          className="btn btn-outline-primary"
+          type="button"
+          onClick={this.handleSubmit}
+        >
           GET RECIPES
         </button>
       </div>
@@ -36,14 +57,15 @@ class GetRecipesButton extends Component {
 
 const mapState = state => {
   return {
-    times: state.times
+    times: state.times,
+    ingredients: state.ingredientList.ingredients
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    fetchRecipes: time => {
-      dispatch(fetchRecipes(time))
+    fetchRecipes: (time, ingredients) => {
+      dispatch(fetchRecipes(time, ingredients))
     }
   }
 }

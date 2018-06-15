@@ -5,11 +5,13 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import recipesReducer from './recipesReducer'
 import timeReducer from './timeReducer'
+import ingredientsReducer from './ingredientsReducer'
 
 const reducer = combineReducers({
   user,
   recipes: recipesReducer,
-  times: timeReducer
+  times: timeReducer,
+  ingredientList: ingredientsReducer
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))

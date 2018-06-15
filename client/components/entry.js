@@ -1,9 +1,9 @@
-import Clock from './Clock'
+// import Clock from './Clock'
 
-// File is created during build phase and placed in dist directory
-// eslint-disable-next-line import/no-unresolved
-import '../../public/Clock.css'
+// // File is created during build phase and placed in dist directory
+// // eslint-disable-next-line import/no-unresolved
+// import '../../public/Clock.css'
 
-export default Clock
+// export default Clock
 
-export {Clock}
+// export {Clock}

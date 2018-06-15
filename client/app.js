@@ -7,29 +7,36 @@ import RecipeList from './components/RecipeList'
 import GetRecipesButton from './components/GetRecipesButton'
 import SelectStartTime from './components/SelectStartTime'
 import SelectEndTime from './components/SelectEndTime'
+import Ingredients from './components/Ingredients'
 import 'react-times/css/material/default.css'
 // or you can use classic theme
 import 'react-times/css/classic/default.css'
 
 const App = () => {
   return (
-    <div className="p-3 px-2">
-      IT'S DINNER TIME! SELECT YOUR DESIRED COOK START AND END TIME
-      <div>
+    <div>
+      <div className="headerText">
+        IT'S DINNER TIME! SELECT YOUR DESIRED TIME TO START AND END COOKING
+      </div>
+      <div className="headerText">
         <GetRecipesButton />
       </div>
+
       <div>
-        <RecipeList />
+        <Ingredients />
       </div>
       <div className="row">
-        <div className="col">
+        <div className="col headerText">
           Select Cook Start Time:
           <SelectStartTime />
         </div>
-        <div className="col">
+        <div className="col headerText">
           Select Cook End Time:
           <SelectEndTime />
         </div>
+      </div>
+      <div>
+        <RecipeList />
       </div>
     </div>
   )

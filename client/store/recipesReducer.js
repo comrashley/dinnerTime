@@ -6,11 +6,15 @@ const initialState = {recipes: [], isFetching: true}
 
 const getRecipes = recipes => ({type: GET_RECIPES, recipes})
 
-export const fetchRecipes = time => {
+export const fetchRecipes = (time, ingredients) => {
   return async dispatch => {
-    const {data} = await axios.get(`/api/recipes/${time}`)
-    console.log(data.matches)
-    dispatch(getRecipes(data.matches))
+    if (ingredients) {
+      const {data} = await axios.get(`/api/recipes/${time}/${ingredients}`)
+      dispatch(getRecipes(data.matches))
+    } else {
+      const {data} = await axios.get(`/api/recipes/${time}`)
+      dispatch(getRecipes(data.matches))
+    }
   }
 }
 
