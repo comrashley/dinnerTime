@@ -8,7 +8,7 @@ import timeReducer from './timeReducer'
 import ingredientsReducer from './ingredientsReducer'
 
 const reducer = combineReducers({
-  user,
+  // user,
   recipes: recipesReducer,
   times: timeReducer,
   ingredientList: ingredientsReducer

@@ -32,12 +32,15 @@ class Ingredients extends Component {
       <div>
         <div>Select Ingredients to include in your search</div>
         <form>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            name="ingredient"
-            value={this.state.ingredient}
-          />
+          <div className="form-group">
+            <input
+              className="form-control"
+              onChange={this.handleChange}
+              type="text"
+              name="ingredient"
+              value={this.state.ingredient}
+            />
+          </div>
         </form>
         <button
           className="btn btn-outline-primary"
@@ -46,10 +49,15 @@ class Ingredients extends Component {
         >
           ADD INGREDIENT
         </button>
-        <div>
-          {this.props.ingredients.map(ingredient => {
-            return <div>{ingredient}</div>
-          })}
+        <br />
+        <br />
+        <div className="row">
+          <br />
+          <ul className="list-group col-2">
+            {this.props.ingredients.map(ingredient => {
+              return <li className="list-group-item">{ingredient}</li>
+            })}
+          </ul>
         </div>
       </div>
     )
