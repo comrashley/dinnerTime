@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {addIngredient} from '../store/ingredientsReducer'
+import {addIngredient, removeIngredient} from '../store/ingredientsReducer'
 
 class Ingredients extends Component {
   constructor(props) {
@@ -10,6 +10,7 @@ class Ingredients extends Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.removeItem = this.removeItem.bind(this)
   }
 
   handleSubmit() {
@@ -18,19 +19,19 @@ class Ingredients extends Component {
       ingredient: ''
     })
   }
+  removeItem(ingredient) {
+    console.log('ingredient', ingredient)
+    this.props.removeIngredient(ingredient)
+  }
   handleChange(evt) {
-    // const ingreds = [...this.state.ingredients, evt.target.value]
-    console.log(evt.target)
     this.setState({
       [evt.target.name]: evt.target.value
-      // ingredients: ingreds
     })
-    console.log(this.state)
   }
   render() {
     return (
       <div>
-        <div>Select Ingredients to include in your search</div>
+        <h5>Select Ingredients to include in your search</h5>
         <form>
           <div className="form-group">
             <input
@@ -53,9 +54,21 @@ class Ingredients extends Component {
         <br />
         <div className="row">
           <br />
-          <ul className="list-group col-2">
+          <ul className="list-group col-3">
             {this.props.ingredients.map(ingredient => {
-              return <li className="list-group-item">{ingredient}</li>
+              return (
+                <div>
+                  <li className="list-group-item listSize">
+                    <button
+                      className="btn btn-danger btn-sm"
+                      onClick={() => this.removeItem(ingredient)}
+                    >
+                      X
+                    </button>{' '}
+                    {ingredient}
+                  </li>
+                </div>
+              )
             })}
           </ul>
         </div>
@@ -74,6 +87,9 @@ const mapDispatch = dispatch => {
   return {
     addIngredient: ingredient => {
       dispatch(addIngredient(ingredient))
+    },
+    removeIngredient: ingredient => {
+      dispatch(removeIngredient(ingredient))
     }
   }
 }

@@ -23,7 +23,7 @@ class GetRecipesButton extends Component {
       times.endMinute,
       times.endHour
     )
-    if (secs <= 0) {
+    if (secs <= -1) {
       this.setState({warningMessage: 'Start time must be before End time!'})
     }
     if (secs > 0) {
@@ -42,7 +42,12 @@ class GetRecipesButton extends Component {
     )
     return (
       <div>
-        {secs <= 0 && <div>{this.state.warningMessage}</div>}
+        {secs <= -1 &&
+          this.state.warningMessage && (
+            <div className="alert alert-danger">
+              {this.state.warningMessage}
+            </div>
+          )}
         <button
           className="btn btn-outline-primary btn-lg"
           type="button"

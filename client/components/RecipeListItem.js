@@ -18,16 +18,22 @@ class RecipeListItem extends Component {
     return (
       <div className="card p-2 m-3 " style={{width: '18rem'}}>
         <div className="card-body headerText">
+          <div className="headerText card-header">
+            {this.props.recipe.recipeName}
+          </div>
           <img
             className="card-img-top mt-4 single-card"
             src={this.props.recipe.smallImageUrls}
             alt="Card image cap"
           />
+          <br />
           <div className="card-title center">
-            <div className="headerText">{this.props.recipe.recipeName}</div>
-            <br />
             <div>Recipe Source: {this.props.recipe.sourceDisplayName}</div>
-            <button onClick={this.handleSubmit} type="button">
+            <button
+              className="btn btn-outline-secondary"
+              onClick={this.handleSubmit}
+              type="button"
+            >
               Recipe Details
             </button>
           </div>

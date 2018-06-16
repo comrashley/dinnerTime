@@ -8,20 +8,19 @@ const RecipeList = props => {
   console.log('recipes', recipes)
   return (
     <div>
-      <ul>
-        {recipes.length ? (
-          <div>
-            <div className="headerText">Recipe List:</div>
-            <div className="card-columns">
-              {recipes.map(recipe => {
-                return <RecipeListItem key={recipe.id} recipe={recipe} />
-              })}
-            </div>
+      <br />
+      {recipes.length ? (
+        <div>
+          <div className="headerText">Recipe List:</div>
+          <div className="card-columns">
+            {recipes.map(recipe => {
+              return <RecipeListItem key={recipe.id} recipe={recipe} />
+            })}
           </div>
-        ) : (
-          <div className="headerText">Pick a time to get cookin'!</div>
-        )}
-      </ul>
+        </div>
+      ) : (
+        <h4 className="headerText">Pick a time to get cookin'!</h4>
+      )}
     </div>
   )
 }

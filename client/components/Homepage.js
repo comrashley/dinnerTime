@@ -28,7 +28,7 @@ const Homepage = () => {
       <div className="headerText">
         <GetRecipesButton />
       </div>
-
+      <br />
       <div>
         <Ingredients />
       </div>
