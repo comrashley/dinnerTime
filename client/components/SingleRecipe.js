@@ -1,12 +1,15 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 const SingleRecipe = props => {
   const recipe = props.singleRecipe
   return (
     recipe && (
       <div className="card text-center">
-        <h1 className="card-header">RECIPE DETAILS</h1>
+        <h3 className="card-header">
+          <Link to="/searchRecipes">Back to Search</Link>
+        </h3>
         <div className="card-body">
           <h5 className="card-title">{recipe.name}</h5>
           <h5>
